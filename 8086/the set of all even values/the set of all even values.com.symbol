@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  the set of all even values.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	00118     	1         	VAR       	(NOSEG)   
+CODE                     	00127     	-1        	LABEL     	(NOSEG)   
+START                    	00127     	-1        	LABEL     	(NOSEG)   
+P_ALL                    	00133     	-1        	LABEL     	(NOSEG)   
+P_EVEN                   	0014A     	-1        	LABEL     	(NOSEG)   
+NOT_EVEN                 	00156     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	0015E     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	00164     	-1        	NEAR      	(NOSEG)   
+PN2_DIV                  	0017A     	-1        	LABEL     	(NOSEG)   
+PN2_LOOP                 	0017A     	-1        	LABEL     	(NOSEG)   
+PN2_PRINT                	00185     	-1        	LABEL     	(NOSEG)   
+PN2_DONE                 	0018F     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	00194     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	00199     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  4:31:23 AM ] 
+< END >
+ 

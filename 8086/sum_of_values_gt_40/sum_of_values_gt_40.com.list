@@ -1,0 +1,127 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+sum_of_values_gt_40.com -- emu8086 assembler version: 4.08  
+ 
+[ 8/19/2025  --  4:26:12 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       org 100h
+[   2]        :                                       
+[   3]    0100: EB 2C                                 .data
+[   4]    0102: 22 51 17 1A 04 0D 07 06 18 47         data    db 34,81,23,26,4,13,7,6,24,71
+[   5]    010C:                                       count   equ $-data
+[   6]    010C: 45 6C 65 6D 65 6E 74 73 3A 0D 0A 24   msg1    db 'Elements:',13,10,'$'
+                                                    
+[   7]    0118: 53 75 6D 20 6F 66 20 76 61 6C 75 65   msg2    db 'Sum of values > 40:',13,10,'$'
+                73 20 3E 20 34 30 3A 0D 0A 24       
+[   8]        :                                       
+[   9]    012E:                                       .code
+[  10]    012E:                                       start:
+[  11]    012E: BA 0C 01                              mov dx, offset msg1
+[  12]    0131: E8 6C 00                              call PRINT_STR
+[  13]        :                                       
+[  14]        :                                       ; Print all elements (each on its own line)
+[  15]    0134: BE 02 01                              mov si, offset data
+[  16]    0137: B9 0A 00                              mov cx, count
+[  17]    013A:                                       print_all:
+[  18]    013A: 8A 04                                 mov al, [si]
+[  19]    013C: E8 2B 00                              call PRINT_BYTE
+[  20]    013F: E8 63 00                              call PRINT_NL
+[  21]    0142: 46                                    inc si
+[  22]    0143: E2 F5                                 loop print_all
+[  23]        :                                       
+[  24]        :                                       ; Sum of values > 40
+[  25]    0145: BE 02 01                              mov si, offset data
+[  26]    0148: B9 0A 00                              mov cx, count
+[  27]    014B: 33 C0                                 xor ax, ax            ; AX = running sum (16-bit)
+[  28]    014D:                                       sum_gt40_loop:
+[  29]    014D: 8A 1C                                 mov bl, [si]
+[  30]    014F: 80 FB 28                              cmp bl, 40
+[  31]    0152: 7E 02                                 jle skip_add
+[  32]    0154: 03 C3                                 add ax, bx            ; add BL (zero-extended via BX)
+[  33]    0156:                                       skip_add:
+[  34]    0156: 46                                    inc si
+[  35]    0157: E2 F4                                 loop sum_gt40_loop
+[  36]        :                                       
+[  37]    0159: BA 18 01                              mov dx, offset msg2
+[  38]    015C: E8 41 00                              call PRINT_STR
+[  39]    015F: E8 0E 00                              call PRINT_NUM
+[  40]    0162: E8 40 00                              call PRINT_NL
+[  41]        :                                       
+[  42]    0165: B8 00 4C                              mov ax, 4C00h
+[  43]    0168: CD 21                                 int 21h
+[  44]        :                                       
+[  45]        :                                       ; --------- Utilities ----------
+[  46]    016A:                                       PRINT_BYTE proc
+[  47]    016A: 32 E4                                 xor ah, ah           ; zero-extend AL -> AX
+[  48]    016C: E8 01 00                              call PRINT_NUM
+[  49]    016F: C3                                    ret
+[  50]        :                                       PRINT_BYTE endp
+[  51]        :                                       
+[  52]    0170:                                       PRINT_NUM proc            ; AX = number to print (0..65535)
+[  53]    0170: 50                                    push ax
+[  54]    0171: 53                                    push bx
+[  55]    0172: 51                                    push cx
+[  56]    0173: 52                                    push dx
+[  57]        :                                       
+[  58]    0174: BB 0A 00                              mov bx, 10
+[  59]    0177: 33 C9                                 xor cx, cx
+[  60]    0179: 3D 00 00                              cmp ax, 0
+[  61]    017C: 75 08                                 jne pn_div
+[  62]        :                                       ; print single '0'
+[  63]    017E: B2 30                                 mov dl, '0'
+[  64]    0180: B4 02                                 mov ah, 02h
+[  65]    0182: CD 21                                 int 21h
+[  66]    0184: EB 15                                 jmp pn_done
+[  67]        :                                       
+[  68]    0186:                                       pn_div:
+[  69]    0186:                                       pn_div_loop:
+[  70]    0186: 33 D2                                 xor dx, dx
+[  71]    0188: F7 F3                                 div bx               ; AX = AX/10, DX = remainder
+[  72]    018A: 52                                    push dx              ; save remainder
+[  73]    018B: 41                                    inc cx
+[  74]    018C: 3D 00 00                              cmp ax, 0
+[  75]    018F: 75 F5                                 jne pn_div_loop
+[  76]        :                                       
+[  77]    0191:                                       pn_print:
+[  78]    0191: 5A                                    pop dx
+[  79]    0192: 80 C2 30                              add dl, '0'
+[  80]    0195: B4 02                                 mov ah, 02h
+[  81]    0197: CD 21                                 int 21h
+[  82]    0199: E2 F6                                 loop pn_print
+[  83]        :                                       
+[  84]    019B:                                       pn_done:
+[  85]    019B: 5A                                    pop dx
+[  86]    019C: 59                                    pop cx
+[  87]    019D: 5B                                    pop bx
+[  88]    019E: 58                                    pop ax
+[  89]    019F: C3                                    ret
+[  90]        :                                       PRINT_NUM endp
+[  91]        :                                       
+[  92]    01A0:                                       PRINT_STR proc            ; DX -> $ string
+[  93]    01A0: B4 09                                 mov ah, 09h
+[  94]    01A2: CD 21                                 int 21h
+[  95]    01A4: C3                                    ret
+[  96]        :                                       PRINT_STR endp
+[  97]        :                                       
+[  98]    01A5:                                       PRINT_NL proc
+[  99]    01A5: B4 02                                 mov ah, 02h
+[ 100]    01A7: B2 0D                                 mov dl, 0Dh
+[ 101]    01A9: CD 21                                 int 21h
+[ 102]    01AB: B2 0A                                 mov dl, 0Ah
+[ 103]    01AD: CD 21                                 int 21h
+[ 104]    01AF: C3                                    ret
+[ 105]        :                                       PRINT_NL endp
+[ 106]        :                                       
+[ 107]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

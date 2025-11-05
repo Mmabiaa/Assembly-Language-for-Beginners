@@ -1,0 +1,13 @@
+Problem 1
+
+Print all elements and sum of values > 40
+
+Start with the array.
+
+Loop through each element.
+
+Print each element.
+
+If element > 40, add it to sum.
+
+After loop, print sum.

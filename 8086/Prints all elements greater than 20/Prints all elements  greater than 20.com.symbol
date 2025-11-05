@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  Prints all elements  greater than 20.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	0011C     	1         	VAR       	(NOSEG)   
+BUFFER                   	00136     	1         	VAR       	(NOSEG)   
+CODE                     	0013C     	-1        	LABEL     	(NOSEG)   
+START                    	0013C     	-1        	LABEL     	(NOSEG)   
+P_ALL                    	00148     	-1        	LABEL     	(NOSEG)   
+P_GT20                   	0015F     	-1        	LABEL     	(NOSEG)   
+SKIP_GT20                	0016B     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00173     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	00179     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00191     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001A1     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001A7     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001B6     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001BB     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:23:30 AM ] 
+< END >
+ 

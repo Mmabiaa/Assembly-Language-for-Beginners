@@ -1,0 +1,7 @@
+Print all elements and values < 20
+
+Loop through array.
+
+Print each element.
+
+If element < 20, print again as part of "less than 20".

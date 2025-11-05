@@ -1,0 +1,132 @@
+org 100h
+
+.data
+data    db 34,81,23,26,4,13,7,6,24,71
+count   equ $-data
+msgA    db 'Elements:',13,10,'$'
+msgB    db 'Sum of first and last even values:',13,10,'$'
+
+first_even db 0
+last_even  db 0
+
+.code
+start:
+; ----------------------
+; Print all elements
+; ----------------------
+mov dx, offset msgA
+call PRINT_STR
+
+mov si, offset data
+mov cx, count
+print_all:
+mov al, [si]
+call PRINT_BYTE
+call PRINT_NL
+inc si
+loop print_all
+
+; ----------------------
+; Find first & last even
+; ----------------------
+mov si, offset data
+mov cx, count
+mov byte ptr [first_even], 0
+mov byte ptr [last_even], 0
+
+find_loop:
+mov al, [si]
+test al, 1
+jnz next_item
+
+cmp byte ptr [first_even], 0
+jne have_first
+mov [first_even], al
+have_first:
+mov [last_even], al
+next_item:
+inc si
+loop find_loop
+
+; ----------------------
+; sum = first_even + last_even
+; ----------------------
+mov al, [first_even]
+mov ah, 0
+mov bl, [last_even]
+mov bh, 0
+add ax, bx   ; AX = 58
+
+; ----------------------
+; Print result
+; ----------------------
+mov dx, offset msgB
+call PRINT_STR
+call PRINT_NUM
+call PRINT_NL
+
+mov ax, 4C00h
+int 21h
+
+; ======================
+; Utilities
+; ======================
+
+; Print unsigned byte in AL
+PRINT_BYTE proc
+xor ah, ah
+call PRINT_NUM
+ret
+PRINT_BYTE endp
+
+; Print decimal number in AX
+PRINT_NUM proc
+push ax
+push bx
+push cx
+push dx
+
+mov bx, 10
+xor cx, cx
+
+pn_loop:
+xor dx, dx
+div bx
+push dx
+inc cx
+test ax, ax
+jnz pn_loop
+
+pn_print:
+pop dx
+add dl, '0'
+mov ah, 02h
+int 21h
+loop pn_print
+
+pop dx
+pop cx
+pop bx
+pop ax
+ret
+PRINT_NUM endp
+
+PRINT_STR proc
+mov ah,09h
+int 21h
+ret
+PRINT_STR endp
+
+PRINT_NL proc
+mov ah,02h
+mov dl,0Dh
+int 21h
+mov dl,0Ah
+int 21h
+ret
+PRINT_NL endp
+
+
+
+
+; [SOURCE]: C:\Users\dell\OneDrive\Desktop\8086\Print all elements & sum of first even and last even values\Print all elements & sum of first even and last even values.asm

@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  sum_of_values_gt_40.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSG1                     	0010C     	1         	VAR       	(NOSEG)   
+MSG2                     	00118     	1         	VAR       	(NOSEG)   
+CODE                     	0012E     	-1        	LABEL     	(NOSEG)   
+START                    	0012E     	-1        	LABEL     	(NOSEG)   
+PRINT_ALL                	0013A     	-1        	LABEL     	(NOSEG)   
+SUM_GT40_LOOP            	0014D     	-1        	LABEL     	(NOSEG)   
+SKIP_ADD                 	00156     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	0016A     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	00170     	-1        	NEAR      	(NOSEG)   
+PN_DIV                   	00186     	-1        	LABEL     	(NOSEG)   
+PN_DIV_LOOP              	00186     	-1        	LABEL     	(NOSEG)   
+PN_PRINT                 	00191     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	0019B     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001A0     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001A5     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  4:26:12 AM ] 
+< END >
+ 

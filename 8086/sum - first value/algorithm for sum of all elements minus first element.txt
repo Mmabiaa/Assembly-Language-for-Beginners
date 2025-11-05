@@ -1,0 +1,11 @@
+Print all elements and (sum of all elements − first element)
+
+Loop through array.
+
+Add all elements → sum.
+
+Subtract first element.
+
+Print elements.
+
+Print result.

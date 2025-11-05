@@ -1,0 +1,133 @@
+org 100h
+
+.data
+data db 34,81,23,26,4,13,7,6,24,71
+count equ $-data
+
+msgA db 'All Elements:',13,10,'$'
+msgB db 'Sum of min + max values:',13,10,'$'
+buffer db 6 dup(?)      ; buffer for decimal printing
+
+.code
+start:
+; ----------------------
+; Print all elements
+; ----------------------
+mov dx, offset msgA
+call PRINT_STR
+mov si, offset data
+mov cx, count
+mov al, [si]        ; initialize min and max with first element
+mov bl, al          ; min = BL
+mov bh, al          ; max = BH
+print_all:
+mov al, [si]
+call PRINT_BYTE
+call PRINT_NL
+
+; update min
+cmp al, bl
+jge chk_max
+mov bl, al          ; new min
+chk_max:
+cmp al, bh
+jle next
+mov bh, al          ; new max
+next:
+inc si
+loop print_all
+
+; ----------------------
+; Compute sum = min + max
+; ----------------------
+xor ax, ax
+mov al, bl          ; min
+add al, bh          ; min + max in AL
+mov ah, 0           ; clear AH
+
+; ----------------------
+; Print result
+; ----------------------
+mov dx, offset msgB
+call PRINT_STR
+call PRINT_NUM
+call PRINT_NL
+
+; Exit
+mov ax, 4C00h
+int 21h
+
+; ======================
+; Utils
+; ======================
+
+; Print unsigned byte in AL
+PRINT_BYTE proc
+mov ah, 0
+call PRINT_NUM
+ret
+PRINT_BYTE endp
+
+; Fast Print decimal AX using buffer
+PRINT_NUM proc
+push ax
+push bx
+push cx
+push dx
+push si
+
+mov si, offset buffer
+mov bx, 10
+xor cx, cx
+
+cmp ax, 0
+jne pn_loop
+mov byte ptr [si], '0'
+inc cx
+jmp pn_done
+
+pn_loop:
+xor dx, dx
+div bx              ; AX ÷ 10
+add dl, '0'
+mov [si], dl
+inc si
+inc cx
+cmp ax, 0
+jne pn_loop
+
+pn_done:
+mov si, offset buffer
+add si, cx
+dec si
+print_digits:
+mov dl, [si]
+mov ah, 02h
+int 21h
+dec si
+loop print_digits
+
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+ret
+PRINT_NUM endp
+
+PRINT_STR proc
+mov ah,09h
+int 21h
+ret
+PRINT_STR endp
+
+PRINT_NL proc
+mov ah,02h
+mov dl,0Dh
+int 21h
+mov dl,0Ah
+int 21h
+ret
+PRINT_NL endp
+
+

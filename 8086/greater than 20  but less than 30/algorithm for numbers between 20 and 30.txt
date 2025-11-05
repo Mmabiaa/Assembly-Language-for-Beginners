@@ -1,0 +1,7 @@
+Print all elements and numbers between 20 and 30
+
+Loop through array.
+
+Print each element.
+
+If 20 < element < 30, print it again as "between 20 and 30".

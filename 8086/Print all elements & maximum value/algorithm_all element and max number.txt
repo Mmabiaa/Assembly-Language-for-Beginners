@@ -1,0 +1,11 @@
+Print all elements and maximum value
+
+Assume first element is max.
+
+Loop through array.
+
+If element > max, update max.
+
+Print all elements.
+
+Print max.

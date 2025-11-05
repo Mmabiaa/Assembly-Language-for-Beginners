@@ -1,0 +1,7 @@
+Print all elements and numbers < 10
+
+Loop through array.
+
+Print each element.
+
+If element < 10, print again as "less than 10

@@ -1,0 +1,117 @@
+org 100h
+
+.data
+data db 34,81,23,26,4,13,7,6,24,71
+count equ $-data
+msgA db 'Elements:',13,10,'$'
+msgB db 'Odd values:',13,10,'$'
+buffer db 6 dup(?)      ; enough to hold max 3-digit number (0–255) plus safety
+
+.code
+start:
+    ; Print all elements
+    mov dx, offset msgA
+    call PRINT_STR
+    mov si, offset data
+    mov cx, count
+p_all:
+    mov al, [si]
+    call PRINT_BYTE
+    call PRINT_NL
+    inc si
+    loop p_all
+
+    ; Print odd elements
+    mov dx, offset msgB
+    call PRINT_STR
+    mov si, offset data
+    mov cx, count
+p_odd:
+    mov al, [si]
+    test al, 1
+    jz not_odd
+    call PRINT_BYTE
+    call PRINT_NL
+not_odd:
+    inc si
+    loop p_odd
+
+    ; Exit
+    mov ax, 4C00h
+    int 21h
+
+; ============================
+; Utils
+; ============================
+
+; Print unsigned byte in AL as decimal
+PRINT_BYTE proc
+    mov ah,0        ; extend AL into AX
+    call PRINT_NUM
+    ret
+PRINT_BYTE endp
+
+; Optimized Print decimal number in AX
+PRINT_NUM proc
+    push ax
+    push bx
+    push cx
+    push dx
+    push si
+
+    mov si, offset buffer   ; point to buffer start
+    mov bx, 10              ; divisor
+    xor cx, cx              ; digit count = 0
+    cmp ax, 0
+    jne pn_loop
+    mov byte ptr [si], '0'
+    inc cx
+    jmp pn_done
+
+pn_loop:
+    xor dx, dx
+    div bx                  ; AX ÷ 10 ? quotient in AX, remainder in DX
+    add dl, '0'
+    mov [si], dl            ; store digit
+    inc si
+    inc cx
+    cmp ax, 0
+    jne pn_loop
+
+pn_done:
+    ; now print digits in reverse
+    mov si, offset buffer
+    add si, cx
+    dec si
+
+pn_print:
+    mov dl, [si]
+    mov ah, 02h
+    int 21h
+    dec si
+    loop pn_print
+
+    pop si
+    pop dx
+    pop cx
+    pop bx
+    pop ax
+    ret
+PRINT_NUM endp
+
+; Print string at DS:DX (terminated by '$')
+PRINT_STR proc
+    mov ah,09h
+    int 21h
+    ret
+PRINT_STR endp
+
+; Print newline (CR + LF)
+PRINT_NL proc
+    mov ah,02h
+    mov dl,0Dh
+    int 21h
+    mov dl,0Ah
+    int 21h
+    ret
+PRINT_NL endp

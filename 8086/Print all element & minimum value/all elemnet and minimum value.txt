@@ -1,0 +1,11 @@
+Print all elements and minimum value
+
+Assume first element is min.
+
+Loop through array.
+
+If element < min, update min.
+
+Print all elements.
+
+Print min.

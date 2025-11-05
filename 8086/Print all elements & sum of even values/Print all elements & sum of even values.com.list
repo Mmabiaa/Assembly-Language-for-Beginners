@@ -1,0 +1,151 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Print all elements & sum of even values.com -- emu8086 assembler version: 4.08  
+ 
+[ 8/19/2025  --  4:42:27 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       org 100h
+[   2]        :                                       
+[   3]    0100: EB 32                                 .data
+[   4]    0102: 22 51 17 1A 04 0D 07 06 18 47         data db 34,81,23,26,4,13,7,6,24,71
+[   5]    010C:                                       count equ $-data
+[   6]    010C: 45 6C 65 6D 65 6E 74 73 3A 0D 0A 24   msgA db 'Elements:',13,10,'$'
+                                                    
+[   7]    0118: 53 75 6D 20 6F 66 20 65 76 65 6E 20   msgB db 'Sum of even values:',13,10,'$'
+                76 61 6C 75 65 73 3A 0D 0A 24       
+[   8]    012E: 00 00 00 00 00 00                     buffer db 6 dup(?)      ; buffer for fast decimal printing
+[   9]        :                                       
+[  10]    0134:                                       .code
+[  11]    0134:                                       start:
+[  12]        :                                       ; ----------------------
+[  13]        :                                       ; Print all elements
+[  14]        :                                       ; ----------------------
+[  15]    0134: BA 0C 01                              mov dx, offset msgA
+[  16]    0137: E8 7E 00                              call PRINT_STR
+[  17]    013A: BE 02 01                              mov si, offset data
+[  18]    013D: B9 0A 00                              mov cx, count
+[  19]    0140:                                       l1:
+[  20]    0140: 8A 04                                 mov al, [si]
+[  21]    0142: E8 30 00                              call PRINT_BYTE
+[  22]    0145: E8 75 00                              call PRINT_NL
+[  23]    0148: 46                                    inc si
+[  24]    0149: E2 F5                                 loop l1
+[  25]        :                                       
+[  26]        :                                       ; ----------------------
+[  27]        :                                       ; Sum even numbers
+[  28]        :                                       ; ----------------------
+[  29]    014B: BE 02 01                              mov si, offset data
+[  30]    014E: B9 0A 00                              mov cx, count
+[  31]    0151: 33 C0                                 xor ax, ax          ; AX = sum
+[  32]    0153:                                       l2:
+[  33]    0153: 8A 04                                 mov al, [si]        ; load element
+[  34]    0155: A8 01                                 test al, 1          ; check odd/even
+[  35]    0157: 75 05                                 jnz skip_even
+[  36]    0159: 98                                    cbw                 ; sign-extend AL -> AX (safe)
+[  37]    015A: 01 06 C8 01                           add word ptr sum, ax ; (see note below)
+[  38]    015E:                                       skip_even:
+[  39]    015E: 46                                    inc si
+[  40]    015F: E2 F2                                 loop l2
+[  41]        :                                       
+[  42]        :                                       ; Print result
+[  43]    0161: BA 18 01                              mov dx, offset msgB
+[  44]    0164: E8 51 00                              call PRINT_STR
+[  45]    0167: A1 C8 01                              mov ax, sum
+[  46]    016A: E8 0E 00                              call PRINT_NUM
+[  47]    016D: E8 4D 00                              call PRINT_NL
+[  48]        :                                       
+[  49]        :                                       ; Exit
+[  50]    0170: B8 00 4C                              mov ax, 4C00h
+[  51]    0173: CD 21                                 int 21h
+[  52]        :                                       
+[  53]        :                                       ; ======================
+[  54]        :                                       ; Utils
+[  55]        :                                       ; ======================
+[  56]        :                                       
+[  57]        :                                       ; Print unsigned byte in AL
+[  58]    0175:                                       PRINT_BYTE proc
+[  59]    0175: B4 00                                 mov ah, 0
+[  60]    0177: E8 01 00                              call PRINT_NUM
+[  61]    017A: C3                                    ret
+[  62]        :                                       PRINT_BYTE endp
+[  63]        :                                       
+[  64]        :                                       ; Fast Print decimal AX using buffer (no push/pop loop)
+[  65]    017B:                                       PRINT_NUM proc
+[  66]    017B: 50                                    push ax
+[  67]    017C: 53                                    push bx
+[  68]    017D: 51                                    push cx
+[  69]    017E: 52                                    push dx
+[  70]    017F: 56                                    push si
+[  71]        :                                       
+[  72]    0180: BE 2E 01                              mov si, offset buffer
+[  73]    0183: BB 0A 00                              mov bx, 10
+[  74]    0186: 33 C9                                 xor cx, cx
+[  75]        :                                       
+[  76]    0188: 3D 00 00                              cmp ax, 0
+[  77]    018B: 75 06                                 jne pn_loop
+[  78]    018D: C6 04 30                              mov byte ptr [si], '0'
+[  79]    0190: 41                                    inc cx
+[  80]    0191: EB 10                                 jmp pn_done
+[  81]        :                                       
+[  82]    0193:                                       pn_loop:
+[  83]    0193: 33 D2                                 xor dx, dx
+[  84]    0195: F7 F3                                 div bx              ; AX ÷ 10
+[  85]    0197: 80 C2 30                              add dl, '0'
+[  86]    019A: 88 14                                 mov [si], dl
+[  87]    019C: 46                                    inc si
+[  88]    019D: 41                                    inc cx
+[  89]    019E: 3D 00 00                              cmp ax, 0
+[  90]    01A1: 75 F0                                 jne pn_loop
+[  91]        :                                       
+[  92]    01A3:                                       pn_done:
+[  93]    01A3: BE 2E 01                              mov si, offset buffer
+[  94]    01A6: 03 F1                                 add si, cx
+[  95]    01A8: 4E                                    dec si
+[  96]    01A9:                                       print_digits:
+[  97]    01A9: 8A 14                                 mov dl, [si]
+[  98]    01AB: B4 02                                 mov ah, 02h
+[  99]    01AD: CD 21                                 int 21h
+[ 100]    01AF: 4E                                    dec si
+[ 101]    01B0: E2 F7                                 loop print_digits
+[ 102]        :                                       
+[ 103]    01B2: 5E                                    pop si
+[ 104]    01B3: 5A                                    pop dx
+[ 105]    01B4: 59                                    pop cx
+[ 106]    01B5: 5B                                    pop bx
+[ 107]    01B6: 58                                    pop ax
+[ 108]    01B7: C3                                    ret
+[ 109]        :                                       PRINT_NUM endp
+[ 110]        :                                       
+[ 111]    01B8:                                       PRINT_STR proc
+[ 112]    01B8: B4 09                                 mov ah,09h
+[ 113]    01BA: CD 21                                 int 21h
+[ 114]    01BC: C3                                    ret
+[ 115]        :                                       PRINT_STR endp
+[ 116]        :                                       
+[ 117]    01BD:                                       PRINT_NL proc
+[ 118]    01BD: B4 02                                 mov ah,02h
+[ 119]    01BF: B2 0D                                 mov dl,0Dh
+[ 120]    01C1: CD 21                                 int 21h
+[ 121]    01C3: B2 0A                                 mov dl,0Ah
+[ 122]    01C5: CD 21                                 int 21h
+[ 123]    01C7: C3                                    ret
+[ 124]        :                                       PRINT_NL endp
+[ 125]        :                                       
+[ 126]        :                                       ; ======================
+[ 127]        :                                       ; Data storage
+[ 128]        :                                       ; ======================
+[ 129]    01C8: 00 00                                 sum dw 0        ; store sum of evens
+[ 130]        :                                       
+[ 131]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

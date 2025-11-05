@@ -1,0 +1,26 @@
+< THE SYMBOL TABLE >  Print all elements & maximum value.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	00118     	1         	VAR       	(NOSEG)   
+BUFFER                   	00129     	1         	VAR       	(NOSEG)   
+MAXVAL                   	0012F     	2         	VAR       	(NOSEG)   
+CODE                     	00131     	-1        	LABEL     	(NOSEG)   
+START                    	00131     	-1        	LABEL     	(NOSEG)   
+L1                       	0013D     	-1        	LABEL     	(NOSEG)   
+L2                       	00156     	-1        	LABEL     	(NOSEG)   
+SKIP_UPDATE              	00162     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00179     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	0017F     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00197     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001A7     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001AD     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001BC     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001C1     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:18:43 AM ] 
+< END >
+ 

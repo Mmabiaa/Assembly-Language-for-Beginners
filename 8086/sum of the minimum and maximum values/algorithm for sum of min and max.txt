@@ -1,0 +1,9 @@
+Print all elements and sum of min + max
+
+Find min and max using loops.
+
+Add them.
+
+Print all elements.
+
+Print the sum.

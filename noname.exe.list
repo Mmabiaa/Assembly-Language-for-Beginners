@@ -1,0 +1,139 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+noname.exe -- emu8086 assembler version: 4.08  
+ 
+[ 7/24/2025  --  11:09:53 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small                    ; Define the memory model as small (separate code and data segments)
+[   2]        :                                       .stack 100h                     ; Reserve 256 bytes of stack memory (100h = 256 in hex)
+[   3]        :                                       
+[   4]        :                                       
+[   5]        :                                       
+[   6]        :                                       .data                               ; Begin data segment
+[   7]    0100: 17 2D 43 2D 17 38                     nums DB 23, 45, 67, 45, 23, 56    ; Define a list of 6 numbers (bytes)
+[   8]    0106: 06                                    count DB 6                        ; Define count = 6, used for loop control
+[   9]    0107: 44 61 74 61 53 65 74 20 3D 20 24      label DB 'DataSet = ', '$'        ; Text label to print before numbers (terminated by '$')
+[  10]    0112: 20 24                                 space DB ' ', '$'                 ; A single space character for separation (terminated by '$')
+[  11]    0114: 0D 0A 24                              newline DB 13, 10, '$'            ; Carriage return (13) + line feed (10) for newline (terminated by '$')
+[  12]        :                                       
+[  13]        :                                       
+[  14]        :                                       
+[  15]        :                                       
+[  16]        :                                       
+[  17]        :                                       .code                    ; Begin code segment
+[  18]    0120:                                       start:                   ; Entry point of the program
+[  19]    0120: B8 10 00                              mov ax, @data          ; Load address of data segment into AX
+[  20]    0123: 8E D8                                 mov ds, ax             ; Copy AX into DS (data segment register)
+[  21]        :                                       
+[  22]        :                                       
+[  23]        :                                       
+[  24]        :                                       ; === Print label ===
+[  25]    0125: BA 07 00                              lea dx, label                                 ; Load address of label string into DX
+[  26]    0128: B4 09                                 mov ah, 09h                                   ; Function 09h of int 21h = Print string until '$'
+[  27]    012A: CD 21                                 int 21h                                       ; Call DOS interrupt to print the label
+[  28]        :                                       
+[  29]        :                                       
+[  30]        :                                       
+[  31]        :                                       ; === Initialize loop ===
+[  32]    012C: 8A 0E 06 00                           mov cl, count          ; Set loop counter (CL) to 6
+[  33]    0130: BE 00 00                              mov si, 0              ; Initialize index (SI) to 0
+[  34]        :                                       
+[  35]        :                                       
+[  36]        :                                       
+[  37]    0133:                                       print_loop:
+[  38]        :                                       ; === Load current number ===
+[  39]    0133: 8A 04                                 mov al, [nums + si]               ; Load current number from nums[si] into AL
+[  40]    0135: B4 00                                 mov ah, 0                         ; Clear AH (prepare for division)
+[  41]    0137: B3 0A                                 mov bl, 10                        ; Set divisor to 10 (for decimal split)
+[  42]    0139: F6 F3                                 div bl                            ; Divide AX by 10 ? AH = quotient (tens), AL = remainder (units)
+[  43]        :                                       
+[  44]        :                                       
+[  45]        :                                       ; === Print tens digit ===
+[  46]    013B: 80 C4 30                              add ah, 30h                   ; Convert tens digit to ASCII by adding 48 (30h)
+[  47]    013E: 8A D4                                 mov dl, ah                    ; Move ASCII digit into DL
+[  48]    0140: B4 02                                 mov ah, 02h                   ; Function 02h of int 21h = Print character in DL
+[  49]    0142: CD 21                                 int 21h                       ; Call DOS interrupt to print tens digit
+[  50]        :                                       
+[  51]        :                                       
+[  52]        :                                       ; === Print units digit ===
+[  53]    0144: 04 30                                 add al, 30h                                            ; Convert units digit to ASCII
+[  54]    0146: 8A D0                                 mov dl, al                                             ; Move ASCII digit into DL
+[  55]    0148: B4 02                                 mov ah, 02h                                            ; Prepare for print
+[  56]    014A: CD 21                                 int 21h                                                ; Print units digit
+[  57]        :                                       
+[  58]        :                                       
+[  59]        :                                       
+[  60]        :                                       ; === Print space ===
+[  61]    014C: BA 12 00                              lea dx, space                     ; Load address of space string
+[  62]    014F: B4 09                                 mov ah, 09h                       ; Function 09h = Print string until '$'
+[  63]    0151: CD 21                                 int 21h                           ; Print space
+[  64]        :                                       
+[  65]        :                                       
+[  66]        :                                       
+[  67]    0153: 46                                    inc si                            ; Move to next number in array
+[  68]    0154: E2 DD                                 loop print_loop                   ; Decrease CL and repeat if CL ? 0
+[  69]        :                                       
+[  70]        :                                       
+[  71]        :                                       
+[  72]        :                                       ; === Move to newline (optional) ===
+[  73]    0156: BA 14 00                              lea dx, newline                   ; Load address of newline characters (CR + LF)
+[  74]    0159: B4 09                                 mov ah, 09h                       ; Function to print string
+[  75]    015B: CD 21                                 int 21h                           ; Print newline
+[  76]        :                                       
+[  77]        :                                       
+[  78]        :                                       
+[  79]        :                                       
+[  80]        :                                       ; === Exit ===
+[  81]    015D: B4 4C                                 mov ah, 4Ch            ; Function 4Ch = Terminate program
+[  82]    015F: CD 21                                 int 21h                ; Exit to DOS
+[  83]        :                                       
+[  84]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 61      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 60      -   check sum (l.byte)
+0013: BC      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 12      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 12      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

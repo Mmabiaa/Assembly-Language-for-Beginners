@@ -1,0 +1,11 @@
+Print all elements and sum of first even + last even
+
+Loop through array.
+
+Find first even, save it.
+
+Find last even, save it.
+
+Add them → sum.
+
+Print elements and then sum.

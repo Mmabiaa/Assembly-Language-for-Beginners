@@ -1,0 +1,26 @@
+< THE SYMBOL TABLE >  Print all elements & sum of even values.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	00118     	1         	VAR       	(NOSEG)   
+BUFFER                   	0012E     	1         	VAR       	(NOSEG)   
+CODE                     	00134     	-1        	LABEL     	(NOSEG)   
+START                    	00134     	-1        	LABEL     	(NOSEG)   
+L1                       	00140     	-1        	LABEL     	(NOSEG)   
+L2                       	00153     	-1        	LABEL     	(NOSEG)   
+SKIP_EVEN                	0015E     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00175     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	0017B     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00193     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001A3     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001A9     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001B8     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001BD     	-1        	NEAR      	(NOSEG)   
+SUM                      	001C8     	2         	VAR       	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  4:42:27 AM ] 
+< END >
+ 

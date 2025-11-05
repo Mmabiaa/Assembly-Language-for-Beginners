@@ -1,0 +1,143 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+all element and minimum value.com -- emu8086 assembler version: 4.08  
+ 
+[ 8/19/2025  --  5:57:32 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       org 100h
+[   2]        :                                       
+[   3]    0100: EB 31                                 .data
+[   4]    0102: 22 51 17 1A 04 0D 07 06 18 47         data db 34,81,23,26,4,13,7,6,24,71
+[   5]    010C:                                       count equ $-data
+[   6]        :                                       
+[   7]    010C: 41 6C 6C 20 45 6C 65 6D 65 6E 74 73   msgA db 'All Elements:',13,10,'$'
+                3A 0D 0A 24                         
+[   8]    011C: 4D 69 6E 69 6D 75 6D 20 56 61 6C 75   msgB db 'Minimum Value:',13,10,'$'
+                65 3A 0D 0A 24                      
+[   9]    012D: 00 00 00 00 00 00                     buffer db 6 dup(?)      ; for decimal printing
+[  10]        :                                       
+[  11]    0133:                                       .code
+[  12]    0133:                                       start:
+[  13]        :                                       ; ----------------------
+[  14]        :                                       ; Print all elements
+[  15]        :                                       ; ----------------------
+[  16]    0133: BA 0C 01                              mov dx, offset msgA
+[  17]    0136: E8 71 00                              call PRINT_STR
+[  18]        :                                       
+[  19]    0139: BE 02 01                              mov si, offset data
+[  20]    013C: B9 0A 00                              mov cx, count
+[  21]        :                                       
+[  22]    013F: 8A 04                                 mov al, [si]        ; take first element
+[  23]    0141: 8A D8                                 mov bl, al          ; BL = current minimum
+[  24]    0143:                                       print_all:
+[  25]    0143: 8A 04                                 mov al, [si]
+[  26]    0145: E8 1F 00                              call PRINT_BYTE
+[  27]    0148: E8 64 00                              call PRINT_NL
+[  28]        :                                       
+[  29]    014B: 3A C3                                 cmp al, bl          ; check if smaller
+[  30]    014D: 7D 02                                 jge skip_min
+[  31]    014F: 8A D8                                 mov bl, al          ; update min
+[  32]    0151:                                       skip_min:
+[  33]    0151: 46                                    inc si
+[  34]    0152: E2 EF                                 loop print_all
+[  35]        :                                       
+[  36]        :                                       ; ----------------------
+[  37]        :                                       ; Print minimum value
+[  38]        :                                       ; ----------------------
+[  39]    0154: BA 1C 01                              mov dx, offset msgB
+[  40]    0157: E8 50 00                              call PRINT_STR
+[  41]        :                                       
+[  42]    015A: 8A C3                                 mov al, bl
+[  43]    015C: E8 08 00                              call PRINT_BYTE
+[  44]    015F: E8 4D 00                              call PRINT_NL
+[  45]        :                                       
+[  46]        :                                       ; Exit
+[  47]    0162: B8 00 4C                              mov ax, 4C00h
+[  48]    0165: CD 21                                 int 21h
+[  49]        :                                       
+[  50]        :                                       ; ======================
+[  51]        :                                       ; Utils
+[  52]        :                                       ; ======================
+[  53]        :                                       
+[  54]        :                                       ; Print unsigned byte in AL
+[  55]    0167:                                       PRINT_BYTE proc
+[  56]    0167: B4 00                                 mov ah, 0
+[  57]    0169: E8 01 00                              call PRINT_NUM
+[  58]    016C: C3                                    ret
+[  59]        :                                       PRINT_BYTE endp
+[  60]        :                                       
+[  61]        :                                       ; Print decimal AX fast
+[  62]    016D:                                       PRINT_NUM proc
+[  63]    016D: 50                                    push ax
+[  64]    016E: 53                                    push bx
+[  65]    016F: 51                                    push cx
+[  66]    0170: 52                                    push dx
+[  67]    0171: 56                                    push si
+[  68]        :                                       
+[  69]    0172: BE 2D 01                              mov si, offset buffer
+[  70]    0175: BB 0A 00                              mov bx, 10
+[  71]    0178: 33 C9                                 xor cx, cx
+[  72]        :                                       
+[  73]    017A: 3D 00 00                              cmp ax, 0
+[  74]    017D: 75 06                                 jne pn_loop
+[  75]    017F: C6 04 30                              mov byte ptr [si], '0'
+[  76]    0182: 41                                    inc cx
+[  77]    0183: EB 10                                 jmp pn_done
+[  78]        :                                       
+[  79]    0185:                                       pn_loop:
+[  80]    0185: 33 D2                                 xor dx, dx
+[  81]    0187: F7 F3                                 div bx              ; AX ÷ 10
+[  82]    0189: 80 C2 30                              add dl, '0'
+[  83]    018C: 88 14                                 mov [si], dl
+[  84]    018E: 46                                    inc si
+[  85]    018F: 41                                    inc cx
+[  86]    0190: 3D 00 00                              cmp ax, 0
+[  87]    0193: 75 F0                                 jne pn_loop
+[  88]        :                                       
+[  89]    0195:                                       pn_done:
+[  90]    0195: BE 2D 01                              mov si, offset buffer
+[  91]    0198: 03 F1                                 add si, cx
+[  92]    019A: 4E                                    dec si
+[  93]    019B:                                       print_digits:
+[  94]    019B: 8A 14                                 mov dl, [si]
+[  95]    019D: B4 02                                 mov ah, 02h
+[  96]    019F: CD 21                                 int 21h
+[  97]    01A1: 4E                                    dec si
+[  98]    01A2: E2 F7                                 loop print_digits
+[  99]        :                                       
+[ 100]    01A4: 5E                                    pop si
+[ 101]    01A5: 5A                                    pop dx
+[ 102]    01A6: 59                                    pop cx
+[ 103]    01A7: 5B                                    pop bx
+[ 104]    01A8: 58                                    pop ax
+[ 105]    01A9: C3                                    ret
+[ 106]        :                                       PRINT_NUM endp
+[ 107]        :                                       
+[ 108]    01AA:                                       PRINT_STR proc
+[ 109]    01AA: B4 09                                 mov ah,09h
+[ 110]    01AC: CD 21                                 int 21h
+[ 111]    01AE: C3                                    ret
+[ 112]        :                                       PRINT_STR endp
+[ 113]        :                                       
+[ 114]    01AF:                                       PRINT_NL proc
+[ 115]    01AF: B4 02                                 mov ah,02h
+[ 116]    01B1: B2 0D                                 mov dl,0Dh
+[ 117]    01B3: CD 21                                 int 21h
+[ 118]    01B5: B2 0A                                 mov dl,0Ah
+[ 119]    01B7: CD 21                                 int 21h
+[ 120]    01B9: C3                                    ret
+[ 121]        :                                       PRINT_NL endp
+[ 122]        :                                       
+[ 123]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

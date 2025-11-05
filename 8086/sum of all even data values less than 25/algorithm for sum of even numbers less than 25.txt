@@ -1,0 +1,9 @@
+Print all elements and sum of even numbers < 25
+
+Loop through array.
+
+Print each element.
+
+If even AND < 25, add to sum.
+
+Print sum.

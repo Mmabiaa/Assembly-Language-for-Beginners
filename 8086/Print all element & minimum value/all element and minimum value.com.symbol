@@ -1,0 +1,24 @@
+< THE SYMBOL TABLE >  all element and minimum value.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	0011C     	1         	VAR       	(NOSEG)   
+BUFFER                   	0012D     	1         	VAR       	(NOSEG)   
+CODE                     	00133     	-1        	LABEL     	(NOSEG)   
+START                    	00133     	-1        	LABEL     	(NOSEG)   
+PRINT_ALL                	00143     	-1        	LABEL     	(NOSEG)   
+SKIP_MIN                 	00151     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00167     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	0016D     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00185     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	00195     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	0019B     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001AA     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001AF     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:57:32 AM ] 
+< END >
+ 

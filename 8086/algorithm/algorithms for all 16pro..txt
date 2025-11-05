@@ -1,0 +1,187 @@
+Print all elements and sum of values > 40
+
+Start with the array.
+
+Loop through each element.
+
+Print each element.
+
+If element > 40, add it to sum.
+
+After loop, print sum.
+
+Problem 2
+
+Print all elements and all even numbers
+
+Loop through array.
+
+Print each element.
+
+If element is even, print it again as part of "even numbers".
+
+Problem 3
+
+Print all elements and all odd numbers
+
+Loop through array.
+
+Print each element.
+
+If element is odd, print it again as part of "odd numbers".
+
+Problem 4
+
+Print all elements and sum of even numbers
+
+Loop through array.
+
+Print each element.
+
+If even, add to sum.
+
+Print sum.
+
+Problem 5
+
+Print all elements and sum of odd numbers
+
+Loop through array.
+
+Print each element.
+
+If odd, add to sum.
+
+Print sum.
+
+Problem 6
+
+Print all elements and sum of first even + last even
+
+Loop through array.
+
+Find first even, save it.
+
+Find last even, save it.
+
+Add them → sum.
+
+Print elements and then sum.
+
+Problem 7
+
+Print all elements and maximum value
+
+Assume first element is max.
+
+Loop through array.
+
+If element > max, update max.
+
+Print all elements.
+
+Print max.
+
+Problem 8
+
+Print all elements and minimum value
+
+Assume first element is min.
+
+Loop through array.
+
+If element < min, update min.
+
+Print all elements.
+
+Print min.
+
+Problem 9
+
+Print all elements and values > 20
+
+Loop through array.
+
+Print each element.
+
+If element > 20, print again as part of "greater than 20".
+
+Problem 10
+
+Print all elements and values < 20
+
+Loop through array.
+
+Print each element.
+
+If element < 20, print again as part of "less than 20".
+
+Problem 11
+
+Print all elements and sum of odd numbers < 30
+
+Loop through array.
+
+Print each element.
+
+If odd AND < 30, add to sum.
+
+Print sum.
+
+Problem 12
+
+Print all elements and sum of even numbers < 25
+
+Loop through array.
+
+Print each element.
+
+If even AND < 25, add to sum.
+
+Print sum.
+
+Problem 13
+
+Print all elements and sum of min + max
+
+Find min and max using loops.
+
+Add them.
+
+Print all elements.
+
+Print the sum.
+
+Problem 14
+
+Print all elements and (sum of all elements − first element)
+
+Loop through array.
+
+Add all elements → sum.
+
+Subtract first element.
+
+Print elements.
+
+Print result.
+
+Problem 15
+
+Print all elements and numbers < 10
+
+Loop through array.
+
+Print each element.
+
+If element < 10, print again as "less than 10".
+
+Problem 16
+
+Print all elements and numbers between 20 and 30
+
+Loop through array.
+
+Print each element.
+
+If 20 < element < 30, print it again as "between 20 and 30".

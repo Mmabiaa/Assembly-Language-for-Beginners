@@ -1,0 +1,23 @@
+< THE SYMBOL TABLE >  sum - first value.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	0011C     	1         	VAR       	(NOSEG)   
+BUFFER                   	0013E     	1         	VAR       	(NOSEG)   
+CODE                     	00144     	-1        	LABEL     	(NOSEG)   
+START                    	00144     	-1        	LABEL     	(NOSEG)   
+PRINT_ALL                	00159     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00179     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	0017F     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00197     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001A7     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001AD     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001BC     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001C1     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:36:31 AM ] 
+< END >
+ 

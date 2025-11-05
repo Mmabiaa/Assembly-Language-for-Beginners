@@ -1,0 +1,26 @@
+< THE SYMBOL TABLE >  Print all elements & sum of first even and last even values.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	00118     	1         	VAR       	(NOSEG)   
+FIRST_EVEN               	0013D     	1         	VAR       	(NOSEG)   
+LAST_EVEN                	0013E     	1         	VAR       	(NOSEG)   
+CODE                     	0013F     	-1        	LABEL     	(NOSEG)   
+START                    	0013F     	-1        	LABEL     	(NOSEG)   
+PRINT_ALL                	0014B     	-1        	LABEL     	(NOSEG)   
+FIND_LOOP                	00166     	-1        	LABEL     	(NOSEG)   
+HAVE_FIRST               	00176     	-1        	LABEL     	(NOSEG)   
+NEXT_ITEM                	00179     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	0019A     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	001A0     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	001A9     	-1        	LABEL     	(NOSEG)   
+PN_PRINT                 	001B3     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001C2     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001C7     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:13:27 AM ] 
+< END >
+ 

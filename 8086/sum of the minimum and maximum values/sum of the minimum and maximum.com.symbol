@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  sum of the minimum and maximum.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	0011C     	1         	VAR       	(NOSEG)   
+BUFFER                   	00137     	1         	VAR       	(NOSEG)   
+CODE                     	0013D     	-1        	LABEL     	(NOSEG)   
+START                    	0013D     	-1        	LABEL     	(NOSEG)   
+PRINT_ALL                	0014F     	-1        	LABEL     	(NOSEG)   
+CHK_MAX                  	0015D     	-1        	LABEL     	(NOSEG)   
+NEXT                     	00163     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	0017F     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	00185     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	0019D     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001AD     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001B3     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001C2     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001C7     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:34:18 AM ] 
+< END >
+ 

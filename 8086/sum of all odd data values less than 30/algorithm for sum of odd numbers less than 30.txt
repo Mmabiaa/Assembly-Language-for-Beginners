@@ -1,0 +1,9 @@
+Print all elements and sum of odd numbers < 30
+
+Loop through array.
+
+Print each element.
+
+If odd AND < 30, add to sum.
+
+Print sum.

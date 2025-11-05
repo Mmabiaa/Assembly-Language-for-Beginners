@@ -1,0 +1,26 @@
+< THE SYMBOL TABLE >  sum of all odd data values less than 30.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	0011C     	1         	VAR       	(NOSEG)   
+BUFFER                   	00136     	1         	VAR       	(NOSEG)   
+SUM                      	0013C     	2         	VAR       	(NOSEG)   
+CODE                     	0013E     	-1        	LABEL     	(NOSEG)   
+START                    	0013E     	-1        	LABEL     	(NOSEG)   
+P_ALL                    	0014A     	-1        	LABEL     	(NOSEG)   
+P_SUM                    	00160     	-1        	LABEL     	(NOSEG)   
+SKIP_ADD                 	0016F     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00186     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	0018C     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	001A4     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	001B4     	-1        	LABEL     	(NOSEG)   
+PRINT_DIGITS             	001BA     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001C9     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001CE     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  5:28:59 AM ] 
+< END >
+ 

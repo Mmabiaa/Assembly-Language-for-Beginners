@@ -1,0 +1,7 @@
+Print all elements and all even numbers
+
+Loop through array.
+
+Print each element.
+
+If element is even, print it again as part of "even numbers".

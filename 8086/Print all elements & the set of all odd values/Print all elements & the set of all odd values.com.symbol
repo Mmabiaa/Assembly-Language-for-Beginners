@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  Print all elements & the set of all odd values.com  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00102     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L4 	0010C     	-1        	LABEL     	(NOSEG)   
+MSGA                     	0010C     	1         	VAR       	(NOSEG)   
+MSGB                     	00118     	1         	VAR       	(NOSEG)   
+BUFFER                   	00126     	1         	VAR       	(NOSEG)   
+CODE                     	0012C     	-1        	LABEL     	(NOSEG)   
+START                    	0012C     	-1        	LABEL     	(NOSEG)   
+P_ALL                    	00138     	-1        	LABEL     	(NOSEG)   
+P_ODD                    	0014F     	-1        	LABEL     	(NOSEG)   
+NOT_ODD                  	0015B     	-1        	LABEL     	(NOSEG)   
+PRINT_BYTE               	00163     	-1        	NEAR      	(NOSEG)   
+PRINT_NUM                	00169     	-1        	NEAR      	(NOSEG)   
+PN_LOOP                  	00181     	-1        	LABEL     	(NOSEG)   
+PN_DONE                  	00191     	-1        	LABEL     	(NOSEG)   
+PN_PRINT                 	00197     	-1        	LABEL     	(NOSEG)   
+PRINT_STR                	001A6     	-1        	NEAR      	(NOSEG)   
+PRINT_NL                 	001AB     	-1        	NEAR      	(NOSEG)   
+===================================================================================================
+[ 8/19/2025  --  4:38:15 AM ] 
+< END >
+ 
